@@ -34,4 +34,8 @@ SampleAppTwo::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Force all access to the app over SSL, use Strict-Transport-Security, 
+  # and use secure cookies.
+  config.force_ssl = true
 end
