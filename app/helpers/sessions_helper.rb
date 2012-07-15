@@ -8,7 +8,7 @@ module SessionsHelper
   def signed_in?
     !current_user.nil?
   end
-  
+
   def current_user=(user)
     @current_user = user
   end
@@ -20,9 +20,15 @@ module SessionsHelper
   def current_user?(user)
     user == current_user
   end
-  
+
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_path, notice: "Please sign in."
+    end
+  end
+
   def sign_out
-    current_user = nil
     cookies.delete(:remember_token)
   end
 
@@ -45,5 +51,4 @@ module SessionsHelper
     def clear_return_to
       session.delete(:return_to)
     end
-
 end
